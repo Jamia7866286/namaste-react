@@ -2,7 +2,6 @@
   "name": "episode-02",
   "version": "1.0.0",
   "description": "This is react project created by naseem ahmad",
-  "main": "app.js",
   "scripts": {
     "test": "jest"
   },

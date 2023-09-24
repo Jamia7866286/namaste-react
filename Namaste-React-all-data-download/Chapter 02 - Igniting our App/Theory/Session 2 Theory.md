@@ -94,6 +94,15 @@ A: `5 superpowers of Parcel`:
 * `Caching while development`
 * `Local server`
 * `Dev build`
+* `Image optimization`
+* `Code splitting`
+* `Important point (Tree shaking)`: remove unused code from your app.
+* `Different bundling`: support older browser or cross browser compatability
+* `caching`: its provide fasting build using cache.
+* `Important point (HTTPS)`: parcel provides https for also localhost. We can check something is working or not with https. read https://parceljs.org/ for best documentation only follow 
+* `Good Error handling or diagnostic`: it is provide best suggestion for error handling.
+* `etc...`: its provide lot of things
+
 
 
 ## Q: What is `.gitignore`? What should we `add and not add` into it?
