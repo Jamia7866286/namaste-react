@@ -1,1 +1,1 @@
-Namaste react code for my learning
+Episode by episode coding practice of Namaste React Course By Akashy Saini.
