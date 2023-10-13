@@ -107,3 +107,6 @@ const Example = (props) => {
   return <div />;
 }
 ```
+
+## Q: About React fiber core react algo?
+https://github.com/acdlite/react-fiber-architecture

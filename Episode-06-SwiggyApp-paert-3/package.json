@@ -1,0 +1,32 @@
+{
+  "name": "episode-06-part-03",
+  "version": "1.0.0",
+  "description": "This is react project created by naseem ahmad",
+  "scripts": {
+    "test": "jest",
+    "dev": "parcel index.html",
+    "build": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jamia7866286/namaste-react.git"
+  },
+  "keywords": [],
+  "author": "Naseem Ahmad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jamia7866286/namaste-react/issues"
+  },
+  "homepage": "https://github.com/Jamia7866286/namaste-react#readme",
+  "devDependencies": {
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "parcel": "^2.9.3",
+    "prettier": "^3.0.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
