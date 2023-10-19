@@ -1,29 +1,41 @@
-import { CDN_URL } from "../utils/constants";
+import { IMG_CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
-  const { resData } = props;
-
   const {
+    id,
     cloudinaryImageId,
     name,
-    avgRating,
     cuisines,
+    areaName,
+    sla,
     costForTwo,
-    deliveryTime,
-  } = resData?.data;
+    avgRatingString,
+  } = props?.restaurant;
 
   return (
-    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-      <img
-        className="res-logo"
-        alt="res-logo"
-        src={CDN_URL + cloudinaryImageId}
-      />
+    <div className="card" style={{ backgroundColor: "#f0f0f0" }} id={id}>
+      <img src={IMG_CDN_URL + cloudinaryImageId} />
       <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} stars</h4>
-      <h4>₹{costForTwo / 100} FOR TWO</h4>
-      <h4>{deliveryTime} minutes</h4>
+      {/* <h5>{cuisines.join(", ")}</h5> */}
+      <h5>{areaName}</h5>
+      <span>
+        <h4
+          style={
+            avgRatingString < 4
+              ? { backgroundColor: "var(--light-red)" }
+              : avgRatingString === "--"
+              ? { backgroundColor: "white", color: "black" }
+              : { color: "white" }
+          }
+        >
+          <i className="fa-solid fa-star"></i>
+          {avgRatingString}
+        </h4>
+        <h4>•</h4>
+        <h4>{sla?.lastMileTravelString ?? "2.0 km"}</h4>
+        <h4>•</h4>
+        <h4>{costForTwo ?? "₹200 for two"}</h4>
+      </span>
     </div>
   );
 };
