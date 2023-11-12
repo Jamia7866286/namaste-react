@@ -1,6 +1,6 @@
 // width should be in %
 
-const Shimmer = ({ className, height, width, radius, mb, style }) => {
+const ShimmerComponent = ({ className, height, width, radius, mb, style }) => {
   const css = {
     height: height,
     width: `${width}%`,
@@ -9,8 +9,8 @@ const Shimmer = ({ className, height, width, radius, mb, style }) => {
     ...style,
   };
   return (
-    <div className={`${shimmer} ${!!className && className}`} style={css}></div>
+    <div className={`shimmer ${!!className && className}`} style={css}></div>
   );
 };
 
-export default Shimmer;
+export default ShimmerComponent;

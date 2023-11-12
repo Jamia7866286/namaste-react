@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "../src/components/Header";
 import { Outlet } from "react-router-dom";
-import Routing from "../Routing/Routing";
-
+import Header from "../src/components/Header";
 const MainLayout = () => {
+
+  console.log("children",children)
   return (
     <div className="app">
       <Header />
-      <Routing />
+      <Outlet />
       <footer>Footer</footer>
     </div>
   );

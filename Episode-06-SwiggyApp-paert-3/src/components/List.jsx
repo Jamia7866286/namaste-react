@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Shimmer from "../common/Shimmer/Shimmer";
+import ShimmerComponent from "../common/Shimmer/Shimmer";
 import { swiggy_api_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
 
-const Body = () => {
+const ListComponent = () => {
   // Local State Variable - Super powerful variable
   const [listOfRestaurants, setListOfRestraunt] = useState([]);
   const [listOfFilterRestaurants, setListOfFilterRestaurants] = useState([]);
@@ -52,9 +52,9 @@ const Body = () => {
     }
   };
 
-  console.log("listOfFilterRestaurants", listOfFilterRestaurants);
+  // console.log("listOfFilterRestaurants", listOfFilterRestaurants);
 
-  console.log("loading", loading);
+  // console.log("loading", loading);
 
   // const onChangeSearch = () => {
   //   let searchData = listOfRestaurants.filter((item) =>
@@ -89,10 +89,10 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-list">
-        {loading ? (
+        {!loading ? (
           listOfFilterRestaurants.length > 0 ? (
             listOfFilterRestaurants.map((restaurant, index) => (
-              <Link key={index} to={`restaurant/${restaurant?.info?.id}`}>
+              <Link key={restaurant?.info?.id+index} to={`restaurant/${restaurant?.info?.id}`}>
                 <RestaurantCard restaurant={restaurant?.info} />
               </Link>
             ))
@@ -100,12 +100,12 @@ const Body = () => {
             <p>No data</p>
           )
         ) : (
-          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
-            <div className="save_property_box">
-              <Shimmer height={12} width={95} mb={12} radius={4} />
-              <Shimmer height={12} width={85} mb={12} radius={4} />
-              <Shimmer height={12} width={50} mb={16} radius={4} />
-              <Shimmer height={32} width={60} radius={4} />
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item,index) => (
+            <div className="save_property_box" key={item+index}>
+              <ShimmerComponent height={12} width={95} mb={12} radius={4} />
+              <ShimmerComponent height={12} width={85} mb={12} radius={4} />
+              <ShimmerComponent height={12} width={50} mb={16} radius={4} />
+              <ShimmerComponent height={32} width={60} radius={4} />
             </div>
           ))
         )}
@@ -114,4 +114,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default ListComponent;
