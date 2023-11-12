@@ -6,15 +6,12 @@
   overflow-x: hidden;
 }
 
-/* all link CSS */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Select all CSS End*/
 
-/* create global variable with :root selector Start*/
 :root {
   --header-bg-color: rgb(255, 255, 255);
   --footer-bg-color: rgb(255, 255, 255);
@@ -37,12 +34,10 @@ a {
   --light-blue: #0463ac;
   --dark-blue: #070062;
 }
-/* create global variable with :root selector End*/
 
 .app {
   padding-top: 6rem;
 }
-/* Header CSS Start*/
 
 .header {
   display: flex;
