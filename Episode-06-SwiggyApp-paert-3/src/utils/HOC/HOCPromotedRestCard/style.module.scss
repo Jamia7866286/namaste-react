@@ -1,0 +1,11 @@
+.promotWrapper{
+    position: relative;
+
+    .label_text{
+        position: absolute;
+        background-color: black;
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}

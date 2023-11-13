@@ -6,7 +6,7 @@ import HeaderComponent from "./components/Header";
 import ListComponent from './components/List';
 
 const About = lazy(()=> import('./components/About'))
-const RestaurantMenuPage = lazy(()=> import('./pages/restaurant_menu_page'))
+const RestaurantMenuPage = lazy(()=> import('./pages/restaurant_menu/restaurant_menu_page'))
 const GroceryPage = lazy(()=> import('./pages/grocery_page'));
 
 
