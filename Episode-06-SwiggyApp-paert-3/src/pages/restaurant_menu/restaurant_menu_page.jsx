@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ShimmerComponent from "../../common/Shimmer/Shimmer";
 import useRestMenu from "../../utils/custom_hooks/useRestMenu/useRestMenu";
@@ -7,13 +7,10 @@ import RestaurantCatagory from "./components/restaurantCatagory";
 const RestaurantMenuPage = () => {
   const { resId } = useParams();
   const restMenu = useRestMenu(resId);
+  const [openAccordionIndex, setOpenAccordionIndex] = useState(null);
 
-  const { name, cuisines, costForTwoMessage } =
+  const { name, costForTwoMessage } =
     restMenu?.cards[0]?.card?.card?.info || {};
-
-  // const { title, itemCards } =
-  //   restMenu?.cards[2]?.groupedCard?.cardGroupMap.REGULAR.cards[2].card.card ||
-  //   {};
 
   const filterCatagory =
     restMenu?.cards[2]?.groupedCard?.cardGroupMap.REGULAR?.cards.filter(
@@ -22,7 +19,6 @@ const RestaurantMenuPage = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  // console.log(filterCatagory);
   return (
     <>
       {restMenu === null ? (
@@ -46,6 +42,15 @@ const RestaurantMenuPage = () => {
                   <RestaurantCatagory
                     key={index}
                     catagoryItem={catagoryItem?.card?.card}
+                    openAccordion={index === openAccordionIndex ? true:false}
+                    setOpenAccordionIndex={()=>{
+                      if (openAccordionIndex === index) {
+                        setOpenAccordionIndex(null);
+                      }
+                      else{
+                        setOpenAccordionIndex(index)
+                      }
+                    }}
                   />
                 ))
               : ""}
