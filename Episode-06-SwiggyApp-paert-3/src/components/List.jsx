@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShimmerComponent from "../common/Shimmer/Shimmer";
 import HOCPromotedRestCard from "../utils/HOC/HOCPromotedRestCard/HOCPromotedRestCard";
 import { swiggy_api_URL } from "../utils/constants";
+import AuthContext from "../utils/context/authContext";
 import RestaurantCard from "./RestaurantCard";
 
 const ListComponent = () => {
@@ -11,6 +12,7 @@ const ListComponent = () => {
   const [listOfFilterRestaurants, setListOfFilterRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
+  const {logInUser, setUserName} = useContext(AuthContext)
 
   const WithPropmoRestaurantCard = HOCPromotedRestCard(RestaurantCard);
 
@@ -94,6 +96,18 @@ const ListComponent = () => {
         >
           Top Rated Restaurants
         </button>
+
+        <div className="search-box mb-4">
+          <input
+            type="text"
+            className="rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-gray-30 sm:text-sm sm:leading-6"
+            value={logInUser}
+            onChange={(e) => {
+              setUserName(e.target.value)
+            }}
+          />
+        </div>
+        
       </div>
       <div className="restaurant-list flex flex-wrap gap-4 justify-between">
         {!loading ? (
