@@ -4,10 +4,9 @@ import { LOGO_URL } from "../utils/constants";
 import useOnlineStatus from "../utils/custom_hooks/useOnlineStatus/useOnlineStatus";
 const HeaderComponent = () => {
   const onlineStatus = useOnlineStatus();
-  const a= useSelector((state) => {
-    console.log("state", state)
-    return state
-  })
+  const cartData = useSelector((store) => store.cart.item)
+
+  console.log("cartData",cartData)
 
   return (
     <>
@@ -69,7 +68,7 @@ const HeaderComponent = () => {
                 to={"/cart"}
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
-                Cart
+                Cart ({cartData.length})
               </Link>
             </li>
           </ul>
