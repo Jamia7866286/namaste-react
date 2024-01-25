@@ -3,16 +3,17 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./Components/Header";
-import Body from "./Components/Body";
-import Footer from "./Components/Footer";
+import { IconContext } from "react-icons";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"; // for routing our page import createBrowserRouter and RouterProvider for providing router & Outlet for children component for nested routing
 import About from "./Components/About";
-import Error from "./Components/Error";
+import Body from "./Components/Body";
 import Contact from "./Components/Contact";
+import Error from "./Components/Error";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 import Login from "./Components/Login";
-import RestaurantMenu from "./Components/RestaurantMenu";
 import Profile from "./Components/ProfileClass";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // for routing our page import createBrowserRouter and RouterProvider for providing router & Outlet for children component for nested routing
+import RestaurantMenu from "./Components/RestaurantMenu";
 
 /* My Food App structure will look like this, 
             1) Header
@@ -36,10 +37,12 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; 
 const AppLayout = () => {
   return (
     <React.Fragment>
+      <IconContext.Provider>
       <Header />
       <Outlet />
       <Footer />
     </React.Fragment>
+    </IconContext.Provider>
   );
 };
 

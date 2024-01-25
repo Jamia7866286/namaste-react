@@ -2,14 +2,14 @@ import React from "react";
 import CatagorySectionCard from "./catagorySectionCard";
 // import style from './common.module.scss';
 
-const RestaurantCatagory = ({ catagoryItem,openAccordion,setOpenAccordionIndex}) => {
+const RestaurantCatagory = ({ catagoryItem,openAccordion,setOpenAccordionIndexMethod}) => {
   const { title, itemCards } = catagoryItem;
 
   return (
     <li className=" w-6/12 mx-auto bg-gray-50 shadow-lg p-4 my-4 rounded-md">
       <div
         className="accordion_header flex justify-between items-center cursor-pointer"
-        onClick={()=>setOpenAccordionIndex()}
+        onClick={()=>setOpenAccordionIndexMethod()}
       >
         <h1 className="font-bold text-xl opacity-80">{title} ({itemCards.length})</h1>
         <span>{openAccordion ? '⬆️' : '⬇️'}</span>

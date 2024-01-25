@@ -29,3 +29,16 @@
     background-position: 468px 0;
   }
 }
+
+body{
+  /* overflow: hidden; */
+}
+.app{
+  /* height: calc(100vh - 72px); */
+  /* overflow: auto; */
+}
+
+.app_inner{
+  height: calc(100vh - 72px);
+  overflow: auto;
+}

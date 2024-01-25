@@ -43,7 +43,7 @@ const RestaurantMenuPage = () => {
                     key={index}
                     catagoryItem={catagoryItem?.card?.card}
                     openAccordion={index === openAccordionIndex ? true:false}
-                    setOpenAccordionIndex={()=>{
+                    setOpenAccordionIndexMethod={()=>{
                       if (openAccordionIndex === index) {
                         setOpenAccordionIndex(null);
                       }

@@ -68,7 +68,6 @@ const ListComponent = () => {
   //   setListOfRestraunt(searchData);
   // };
 
-  console.log("before", listOfFilterRestaurants);
 
   return (
     <div className="mx-auto max-w-7xl justify-between p-6 lg:px-8">
