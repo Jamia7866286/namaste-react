@@ -1,0 +1,4 @@
+key_id	key_secret
+rzp_test_fA6cWeu7iX49hW	RW0yV22pOp5Q7dNPQ8785D3i
+
+
