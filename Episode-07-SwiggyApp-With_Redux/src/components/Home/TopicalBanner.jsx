@@ -4,14 +4,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import TopicalBannerImage from "./TopicalBannerImage";
+import RestaurantCard from "./RestaurantCard";
 
 const settings = {
     infinite: false,
     speed: 500,
-    slidesToShow: 2.8,
-    slidesToScroll: 1,
+    slidesToShow: 3.5,
+    slidesToScroll: 3,
     arrows: true,
     useCSS: true,
+
     responsive: [
         {
             breakpoint: 1024,
@@ -19,7 +21,6 @@ const settings = {
                 slidesToShow: 2.2,
                 slidesToScroll: 1,
                 infinite: false,
-                // dots: true,
                 arrows: true,
             }
         },
@@ -52,39 +53,27 @@ const settings = {
     ]
 };
 
-const TopicalBanner = () => {
-  
+const TopicalBanner = (props) => {
+    const {gridElements, header} = props?.currentCard?.card?.card || {}
+    const {restaurants} = gridElements?.infoWithStyle || {}
 
     return (
         <div className="relative w-9/12 m-auto pt-10 mb-2">
             <div className="lg:text-2xl text-lg font-bold mb-6">
-                Best offers for you
+                {header?.title}
             </div>
             <Slider
                 className=""
                 {...settings}
                 // ref={(slider) => (sliderRef.current = slider)}
             >
-                <div>
-                    <TopicalBannerImage
-                        imgStyle={{ width: 425, height: 250 }}
-                    />
-                </div>
-                <div>
-                    <TopicalBannerImage
-                        imgStyle={{ width: 425, height: 250 }}
-                    />
-                </div>
-                <div>
-                    <TopicalBannerImage
-                        imgStyle={{ width: 425, height: 250 }}
-                    />
-                </div>
-                <div>
-                    <TopicalBannerImage
-                        imgStyle={{ width: 200, height: 150 }}
-                    />
-                </div>
+                {
+                    restaurants?.map((topRestaurantsItem)=>(
+                        <div>
+                            <RestaurantCard currentCard={topRestaurantsItem?.info} />
+                        </div>
+                    ))
+                }
             </Slider>
 
             <>

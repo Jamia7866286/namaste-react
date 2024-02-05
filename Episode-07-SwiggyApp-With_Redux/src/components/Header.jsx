@@ -9,12 +9,13 @@ import useOnlineStatus from "../utils/custom_hooks/useOnlineStatus/useOnlineStat
 
 const HeaderComponent = () => {
     const onlineStatus = useOnlineStatus();
-    const cartData = useSelector((store) => store.cart.item);
+    const authData = useSelector((store) => store.auth);
+    console.log("authData header",authData)
 
     return (
         <>
             <div className="relative">
-                <div className="flex flex-row justify-between items-center shadow-md py-1 lg:px-52 px-12">
+                <div className="flex flex-row justify-between items-center shadow-md py-1 lg:px-36 px-12">
                     <Link
                         to="/"
                         className="hover:transition hover:duration-250 hover:ease-in-out hover:scale-95"
@@ -53,28 +54,28 @@ const HeaderComponent = () => {
                             >
                                 <AiOutlineUser size={21} className="mt-[1px]" />
                                 <span className="font-medium text-header">
-                                    User Name
+                                    { authData.isAuthenticated ? "User Name" : "Login"}
                                 </span>
                             </button>
-                            {/* {user && */}
-                            <div className="hidden absolute group-hover/profile:block font-semibold z-10 w-40 p-4 bg-red-50 text-sm shadow-md">
-                                <ul className="space-y-4">
-                                    <li className="hover:font-bold">Profile</li>
-                                    <li className="hover:font-bold">Orders</li>
-                                    <li className="hover:font-bold">
-                                        Favourites
-                                    </li>
-                                    <li className="hover:font-bold">
-                                        <button
-                                            type="button"
-                                            onClick={() => {}}
-                                        >
-                                            Logout
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                            {/* } */}
+                            {authData.isAuthenticated &&
+                                <div className="hidden absolute group-hover/profile:block font-semibold z-10 w-40 p-4 bg-red-50 text-sm shadow-md">
+                                    <ul className="space-y-4">
+                                        <li className="hover:font-bold">Profile</li>
+                                        <li className="hover:font-bold">Orders</li>
+                                        <li className="hover:font-bold">
+                                            Favourites
+                                        </li>
+                                        <li className="hover:font-bold">
+                                            <button
+                                                type="button"
+                                                onClick={() => {}}
+                                            >
+                                                Logout
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         </li>
                         <li className="relative">
                             <Link

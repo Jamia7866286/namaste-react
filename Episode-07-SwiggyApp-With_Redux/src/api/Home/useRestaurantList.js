@@ -5,7 +5,6 @@ export const useRestaurantList = async () => {
   try {
     const response = await Fetch(RESTAURANT_API);
     let result = await response.json();
-    console.log("useRestaurantList result",result)
     if (response.status >= 200 && response.status <= 202) {
       return result;
     } else {

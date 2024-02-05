@@ -1,16 +1,18 @@
 import React from "react";
 import { CLOUDINARY_URL } from "../../utils/constants";
+import { Link } from "react-router-dom";
 
-const TopicalBannerImage = (props) => {
-    const { width, height } = props.imgStyle;
+const TopicalBannerImage = ({imgStyle,mindCardItem}) => {
+    const { width } = imgStyle;
     return (
-        <div className={`w-${width} h-${height} pr-4 bg-slate-50`}>
+        <Link to={mindCardItem?.action?.link} className={"outline-none"} target="_blank">
             <img
-                src={`${CLOUDINARY_URL}rng/md/carousel/production/186a71018df06ce2bea1db55086d32e4`}
-                alt=""
-                className={`w-${width} h-${height}`}
+                src={`${CLOUDINARY_URL}${mindCardItem?.imageId}`}
+                alt={mindCardItem?.accessibility?.altText}
+                // className={`w-${width} h-${height}`}
+                style={{width: width}}
             />
-        </div>
+        </Link>
     );
 };
 

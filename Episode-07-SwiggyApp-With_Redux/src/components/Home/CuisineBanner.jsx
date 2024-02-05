@@ -9,10 +9,12 @@ import TopicalBannerImage from "./TopicalBannerImage";
 const settings = {
         infinite: false,
         speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 1,
+        slidesToShow: 6.4,
+        slidesToScroll: 5,
         arrows: true,
         useCSS: true,
+        speed: 2000,
+        
         responsive: [
             {
                 breakpoint: 1024,
@@ -54,23 +56,25 @@ const settings = {
     };
     
 
-const CuisineBanner = () => {
-   
+const CuisineBanner = (props) => {
 
+    const {gridElements,header}  = props?.currentCard?.card?.card || {}
+    const {info} = gridElements?.infoWithStyle || []
+    
     return (
-        <div className="relative w-9/12 m-auto bg-slate-50 mt-6 mb-2">
+        <div className="relative w-9/12 m-auto mt-6 mb-2">
             <div className="lg:text-2xl text-lg font-bold mb-6">
                 <span>Naseem</span> 
-                <span className="ml-1">what's on your mind?</span>
+                <span className="ml-1 lowercase">{header?.title}</span>
             </div>
              <Slider
                 className=""
                 {...settings}
                 // ref={(slider) => (sliderRef.current = slider)}
             >
-                {[1,2,3,4,5,6,7,8,9].map((info) => ( 
+                {info?.map((mindCardItem) => ( 
                     <div className="">
-                        <TopicalBannerImage imgStyle={{ width: '124px', height: '160px' }} />
+                        <TopicalBannerImage imgStyle={{ width: '80%' }} mindCardItem={mindCardItem} />
                     </div>
                 ))} 
              </Slider> 

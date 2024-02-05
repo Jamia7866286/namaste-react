@@ -11,6 +11,9 @@ import HeaderComponent from "./components/Header";
 import ListComponent from "./components/Home";
 import CartPage from "./pages/cart_page";
 import store from "./redux/store/store";
+import PaymentPage from './pages/payment';
+import LoginPage from './pages/Login';
+import SignupPage from './pages/Signup';
 
 
 const About = lazy(() => import("./components/About"));
@@ -22,7 +25,7 @@ const queryClient = new QueryClient()
 
 const AppLayout = () => {
     return (
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient} contextSharing={true}>
             <Provider store={store}>
                 <div className="app">
                     <HeaderComponent />
@@ -66,6 +69,30 @@ export const AppRouting = createBrowserRouter([
                 element: (
                     <Suspense fallback="loading grocery page...">
                         <CartPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/payment",
+                element: (
+                    <Suspense fallback="loading payment page...">
+                        <PaymentPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/login",
+                element: (
+                    <Suspense fallback="loading login page...">
+                        <LoginPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/signup",
+                element: (
+                    <Suspense fallback="loading signup page...">
+                        <SignupPage />
                     </Suspense>
                 ),
             },

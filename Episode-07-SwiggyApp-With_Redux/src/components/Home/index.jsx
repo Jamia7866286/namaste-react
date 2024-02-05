@@ -19,26 +19,30 @@ const ListComponent = () => {
         queryKey: ['restaurantsList'],
         queryFn: useRestaurantList,
     })
-    console.log("call data", data)
+    const {cards} = data?.data || []
+    console.log("call data", cards)
     return (
         <>
-            <div className="bg-slate-50 h-full">
+            <div className="h-full">
                 {
-                    data?.data?.cards?.map((currentCard) => {
-                        console.log("hi", currentCard?.card?.card?.id === MainCardID.whats_on_your_mind)
+                    cards?.map((currentCard) => {
                         return (
-                            currentCard?.card?.card?.id === MainCardID.whats_on_your_mind &&
-                            <CuisineBanner />
-
+                            currentCard?.card?.card?.id === MainCardID.whats_on_your_mind && <CuisineBanner currentCard={currentCard} />
                         )
                     })
                 }
-                <TopicalBanner />
-                {/* <CuisineBanner /> */}
 
+                {
+                    cards?.map((currentCard) => {
+                        return (
+                            currentCard?.card?.card?.id === MainCardID.top_brands_for_you && <TopicalBanner currentCard={currentCard} />
+                        )
+                    })
+                }
+                
                 <div className="w-9/12 m-auto mt-6 pb-10">
                     <div className="lg:text-2xl text-lg font-bold mb-4">
-                        Restaurants with online food delivery
+                    dummy  Restaurants with online food delivery dummy
                     </div>
                     {/* <SkeletonFilterRestaurants /> */}
                     <div>
@@ -129,10 +133,17 @@ const ListComponent = () => {
                     </div>
 
                     <div className="grid lg:grid-cols-4 gap-10 items-start md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
-                        <Link to={`/restaurant/id`}>
-                            <RestaurantCard
-                            />
-                        </Link>
+                    {
+                        cards?.map((currentCard) => {
+                            const {id, gridElements} = currentCard?.card?.card;
+                            const {restaurants} = gridElements?.infoWithStyle || {};
+                            return (
+                                id === MainCardID.restaurant_grid_listing && restaurants?.map((restaurantItem)=>(
+                                    <RestaurantCard currentCard={restaurantItem?.info} />
+                                ))
+                            )
+                        })
+                    }
                     </div>
                     {/* {isFetchingNextPage && <SkeletonMoreRestaurants />} */}
                     {/* {isSuccess && hasNextPage && <div ref={ref} />} */}
