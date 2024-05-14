@@ -8,7 +8,6 @@ const CartPage = () => {
   const cartItemsStore = useSelector((store) => store.cart.item);
   const dispatch = useDispatch()
 
-  console.log("cartItemsStore", cartItemsStore);
   return (
     <div className="mt-10">
       <div className="text-center font-bold">

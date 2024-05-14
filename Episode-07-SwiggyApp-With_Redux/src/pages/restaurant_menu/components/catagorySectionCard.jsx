@@ -22,12 +22,13 @@ const CatagorySectionCard = ({ catagoryCard }) => {
         <p className="text-gray-400 opacity-75 mt-4">{description}</p>
       </div>
       <div className="min-w-[118px] w-[118px] h-24 rounded-md overflow-hidden relative">
-        <img
-          src={ITEM_IMG_CDN_URL + imageId}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-
+        {
+          imageId &&  <img
+            src={ITEM_IMG_CDN_URL + imageId}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        }
         <button
           className="absolute bottom-0 left-[12] bg-white rounded-md text-green-600 w-[94] h-[34] font-semibold text-xs border border-gray-200 shadow-md"
           onClick={AddCartItems}

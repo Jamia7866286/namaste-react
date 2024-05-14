@@ -30,15 +30,18 @@
   }
 }
 
-body{
-  /* overflow: hidden; */
-}
-.app{
-  /* height: calc(100vh - 72px); */
-  /* overflow: auto; */
-}
-
 .app_inner{
   height: calc(100vh - 72px);
   overflow: auto;
 }
+
+.ant-btn-primary{
+  background-color: #1677ff;
+}
+
+.bg_a{
+  background: rgba(0,0,0,0.8);
+}
+
+
+/* MOdal css filter */

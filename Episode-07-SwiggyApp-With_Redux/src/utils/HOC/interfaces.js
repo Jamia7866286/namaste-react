@@ -7,3 +7,7 @@ export const MainCardID = {
         show_more_button : "show_more_button",
         restaurant_near_me_links : "restaurant_near_me_links",
 }
+
+export const ApiType = {
+        InlineViewFilterSortWidget: "type.googleapis.com/swiggy.gandalf.widgets.v2.InlineViewFilterSortWidget" 
+}

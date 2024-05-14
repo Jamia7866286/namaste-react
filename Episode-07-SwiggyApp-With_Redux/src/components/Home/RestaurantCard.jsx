@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const RestaurantCard = ({currentCard, width}) => {
     const { id, cloudinaryImageId, name, avgRating, sla, cuisines, locality} = currentCard || {}
-    console.log("info",currentCard)
     return (
         <Link to={`/restaurant/${id}`}>
             <div data-testid='restaurantCard' className="w-11/12 flex flex-col justify-center items-start hover:transition hover:duration-250 hover:ease-in-out hover:scale-95">

@@ -7,7 +7,7 @@ export const IMG_CDN_URL =
 
 // Image CDN URL for Restaurant Menu
 export const ITEM_IMG_CDN_URL =
-  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 
 // Swiggy API to get Restaurant data with corsproxy
 // export const swiggy_api_URL =
@@ -63,3 +63,5 @@ export const RESTAURANT_TYPE_KEY =
   // export const RESTAURANT_API_old = 'https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.979568962372062&lng=77.50290893018244&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&__fetch_req__=true'
 
 export const RESTAURANT_API = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.560323&lng=77.279235&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+
+export const BASE_URL = 'http://localhost:3000'

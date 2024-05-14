@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { json, useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/auth/authSlice";
 import ErrorMessage from "../../common/Error/Error";
 import * as yup from 'yup'
 import { useFormik } from "formik";
+import { useLogin } from "../../api/login/useLogin";
+import { isLogIn } from "../../utils/commonFunctions";
 
 let userInfoSchema = yup.object({
     email: yup.string().required("Please fill this field!").email(),
@@ -14,9 +16,9 @@ let userInfoSchema = yup.object({
 const LoginComponent = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [apiError, setApiError] = useState('')
 
-    const authData = useSelector((store) => store.auth);
-    console.log("authData",authData)
+    // const authData = useSelector((store) => store.auth);
 
     const { handleSubmit, values, handleChange, errors, touched } = useFormik({
         initialValues: {
@@ -26,27 +28,10 @@ const LoginComponent = () => {
         enableReinitialize: true,
         validationSchema: userInfoSchema,
         onSubmit: async (values) => {
-            console.log("values", values)
-            try {
-                const res = await fetch('http://localhost:3000/login',
-                    {
-                        method: "POST",
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(values)
-                    });
-                const result = await res.json();
-                localStorage.setItem('userName', result.username);
-                localStorage.setItem('authToken', result.token);
-                dispatch(login(result.username))
-                console.log({ result });
-                // navigate('/')
-            }
-            catch (error) {
-                console.log("login error: ", error)
-            }
+            useLogin(values, setApiError, dispatch)
+            navigate('/')
+            // localStorage.setItem('userEmail', result?.email)
+            // localStorage.setItem('userPassword', result?.password)
         },
     })
 
@@ -69,23 +54,29 @@ const LoginComponent = () => {
                     className="mt-12 border rounded-sm px-2 py-4 placeholder:text-xs placeholder:-translate-y-4 text-sm placeholder:pb-2"
                     name="email"
                     value={values.email}
-                    onChange={handleChange}
+                    onChange={(e)=>{
+                        handleChange(e)
+                        setApiError('')
+                    }}
                 />
                 {errors.email && touched.email && <ErrorMessage message={errors.email} />}
+
                 <input
                     type="password"
                     placeholder="Enter your password"
                     className="border rounded-sm px-2 py-4 placeholder:text-xs placeholder:-translate-y-4 text-sm"
                     name="password"
                     value={values.password}
-                    onChange={handleChange}
+                    onChange={(e)=>{
+                        handleChange(e)
+                        setApiError('')
+                    }}
                 />
                 {errors.password && touched.password && <ErrorMessage message={errors.password} />}
+                {apiError && <ErrorMessage message={apiError} />}
                 <button
                     type="submit"
-                    className="bg-red-600 text-white text-sm p-4 font-semibold rounded-sm"
-                // onClick={handleLogin}
-                >
+                    className="bg-red-600 text-white text-sm p-4 font-semibold rounded-sm">
                     LOGIN
                 </button>
             </div>

@@ -24,6 +24,7 @@ const GroceryPage = lazy(() => import("./pages/cart_page"));
 const queryClient = new QueryClient()
 
 const AppLayout = () => {
+    
     return (
         <QueryClientProvider client={queryClient} contextSharing={true}>
             <Provider store={store}>
