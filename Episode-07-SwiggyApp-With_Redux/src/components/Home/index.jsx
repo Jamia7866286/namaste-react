@@ -1,76 +1,115 @@
-import {
-    useQuery,
-} from '@tanstack/react-query';
-import { AiOutlineClose } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { useRestaurantList } from '../../api/Home/useRestaurantList';
 import { ApiType, MainCardID } from '../../utils/HOC/interfaces';
 import CuisineBanner from "./CuisineBanner";
 import RestaurantCard from "./RestaurantCard";
 import TopicalBanner from "./TopicalBanner";
 import { HomeFilter } from './HomeFilter/HomeFilter';
+import { useEffect, useState } from 'react';
 
 const ListComponent = () => {
-    const { isLoading, isError, data, error } = useQuery({
-        queryKey: ['restaurantsList'],
-        queryFn: useRestaurantList,
-    })
-    const {cards} = data?.data || []
+    const [apiData, setApiData] = useState([])
+    const [selectedItems,setSelectedItems] = useState([]);
+    const [cardData, setCardData] = useState([])
 
-    console.log("cards with filter",cards)
+    const filterByRating = () => {
+        const sortedByRating = [...cardData].sort((a, b) => b?.info?.avgRating - a?.info?.avgRating);
+        console.log("sortedByRating", sortedByRating);
+        setCardData(sortedByRating);
+    };
+
+    const filterByTime = ()=>{
+        const sortedByTime = [...cardData].sort((a,b)=>  b?.info?.sla?.deliveryTime - a?.info?.sla?.deliveryTime)
+        console.log("sortedByTime",sortedByTime)
+        setCardData(sortedByTime);
+    }
+
+    const filterCardDataRatingAndAll = (filterType)=>{
+        switch(filterType){
+            case 'avgRating':
+                filterByRating();
+                break;
+            case 'deliveryTime':
+                filterByTime();
+                break;
+            default: 
+                break;
+        }
+    }
+
+    const FilterRatingTimeDisplay = ()=>{
+        return (
+            cardData?.map((restaurantItem, index)=>(
+                <RestaurantCard currentCard={restaurantItem?.info} key={index} />
+            )
+        )
+    )}
+
+    const mapData = ()=>{
+        apiData?.map((currentCard) => {
+            const {id, gridElements} = currentCard?.card?.card;
+            if(id === MainCardID.restaurant_grid_listing && gridElements?.infoWithStyle?.restaurants){
+                setCardData(gridElements?.infoWithStyle?.restaurants);
+            }
+        })
+    }
+
+    // set api data
+    useEffect(()=>{
+        const fetchApi = async()=>{
+            try{
+                const data = await useRestaurantList();
+                setApiData(data?.data?.cards)
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        fetchApi();
+    },[])
+
+    useEffect(()=>{
+        mapData();
+    },[apiData])
 
     return (
         <div className="h-full">
-            {
-                cards?.map((currentCard) => {
+            {apiData?.map((currentCard, index) => {
                     return (
-                        currentCard?.card?.card?.id === MainCardID.whats_on_your_mind && <CuisineBanner currentCard={currentCard} />
+                        currentCard?.card?.card?.id === MainCardID.whats_on_your_mind && <CuisineBanner currentCard={currentCard} key={index} />
                     )
                 })
             }
 
-            {
-                cards?.map((currentCard) => {
+            {apiData?.map((currentCard, index) => {
                     return (
-                        currentCard?.card?.card?.id === MainCardID.top_brands_for_you && <TopicalBanner currentCard={currentCard} />
+                        currentCard?.card?.card?.id === MainCardID.top_brands_for_you && <TopicalBanner currentCard={currentCard} key={index} />
                     )
                 })
             }
             
             <div className="w-9/12 m-auto mt-6 pb-10">
-                {
-                    cards?.map((currentCard) => {
+                {apiData?.map((currentCard, index) => {
                         return (
                             currentCard?.card?.card?.id === MainCardID.popular_restaurants_title && 
-                            <div className="lg:text-2xl text-lg font-bold mb-4">
+                            <div className="lg:text-2xl text-lg font-bold mb-4" key={index}>
                                 {currentCard?.card?.card?.title}
                             </div>
                         )
                     })
                 }
+
                 {/* <SkeletonFilterRestaurants /> */}
-                {
-                    cards?.map((currentCard) => {
+                
+                {apiData?.map((currentCard, index) => {
                         return (
-                            currentCard?.card?.card?.['@type'] === ApiType.InlineViewFilterSortWidget &&  <HomeFilter FilterData={currentCard?.card?.card} />
+                            currentCard?.card?.card?.['@type'] === ApiType.InlineViewFilterSortWidget &&  <HomeFilter FilterData={currentCard?.card?.card} selectedItems={selectedItems} setSelectedItems={setSelectedItems} filterCardDataRatingAndAll={filterCardDataRatingAndAll} key={index} />
                         )
                     })
                 }
                 
 
                 <div className="grid lg:grid-cols-4 gap-10 items-start md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
-                {
-                    cards?.map((currentCard) => {
-                        const {id, gridElements} = currentCard?.card?.card;
-                        const {restaurants} = gridElements?.infoWithStyle || {};
-                        return (
-                            id === MainCardID.restaurant_grid_listing && restaurants?.map((restaurantItem)=>(
-                                <RestaurantCard currentCard={restaurantItem?.info} />
-                            ))
-                        )
-                    })
-                }
+                    {FilterRatingTimeDisplay()}
                 </div>
                 {/* {isFetchingNextPage && <SkeletonMoreRestaurants />} */}
                 {/* {isSuccess && hasNextPage && <div ref={ref} />} */}

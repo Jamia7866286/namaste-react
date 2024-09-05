@@ -58,6 +58,7 @@ const LoginComponent = () => {
                         handleChange(e)
                         setApiError('')
                     }}
+                    autoComplete="on"
                 />
                 {errors.email && touched.email && <ErrorMessage message={errors.email} />}
 
@@ -71,6 +72,7 @@ const LoginComponent = () => {
                         handleChange(e)
                         setApiError('')
                     }}
+                    autoComplete="on"
                 />
                 {errors.password && touched.password && <ErrorMessage message={errors.password} />}
                 {apiError && <ErrorMessage message={apiError} />}

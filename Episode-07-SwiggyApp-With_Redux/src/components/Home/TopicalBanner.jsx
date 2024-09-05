@@ -68,8 +68,8 @@ const TopicalBanner = (props) => {
                 // ref={(slider) => (sliderRef.current = slider)}
             >
                 {
-                    restaurants?.map((topRestaurantsItem)=>(
-                        <div>
+                    restaurants?.map((topRestaurantsItem, index)=>(
+                        <div key={index}>
                             <RestaurantCard currentCard={topRestaurantsItem?.info} />
                         </div>
                     ))

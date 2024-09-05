@@ -4,12 +4,11 @@ import { IoIosArrowDown } from "react-icons/io";
 import { LuFilter } from "react-icons/lu";
 import { HomeFilterSelection } from "./HomeFilterSelection";
 
-export const HomeFilter = ({ FilterData }) => {
+export const HomeFilter = ({ FilterData, selectedItems, setSelectedItems, filterCardDataRatingAndAll }) => {
   const { facetList } = FilterData || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("deliveryTime");
   const [filterData, setFilterData] = useState({});
-  const [selectedItems,setSelectedItems] = useState([]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -23,15 +22,11 @@ export const HomeFilter = ({ FilterData }) => {
     setIsModalOpen(false);
   };
 
-  console.log("facetList", facetList, "filterData",filterData);
-
   useEffect(()=>{
     facetList?.length>0 && facetList?.map((filterItem)=>(
       filterItem?.id === activeTab && setFilterData(filterItem)
     ))
   },[activeTab])
-
-
 
   return (
     <div className="relative flex flex-row space-x-4 text-black/75 mb-6 lg:text-sm text-xs">
@@ -43,36 +38,38 @@ export const HomeFilter = ({ FilterData }) => {
         <span>Filter</span>
         <LuFilter />
       </button>
-      <button
+      {/* <button
         type="button"
         className="flex flex-row space-x-1 items-center justify-center border border-[#E2E2E7] px-2 py-1 rounded-2xl shadow-md"
       >
         <span>Delivery Time</span>
         <IoIosArrowDown color="black" size={20} className="mt-1" />
-      </button>
+      </button> */}
       <button
         type="button"
         className={`flex flex-row space-x-1 items-center justify-center border px-2 py-1 rounded-2xl shadow-md border-blackborder-[#E2E2E7]`}
+        onClick={()=>filterCardDataRatingAndAll('avgRating')}
       >
         <span>Ratings 4+</span>
         <AiOutlineClose className="font-bold mt-[1px]" />
       </button>
-      <button
+      {/* <button
         type="button"
         className="flex flex-row space-x-1 items-center justify-center border border-[#E2E2E7] px-2 py-1 rounded-2xl shadow-md"
       >
         <span>Pure Veg</span>
         <AiOutlineClose className="font-bold mt-[1px]" />
-      </button>
+      </button> */}
       <button
         type="button"
         className="flex flex-row space-x-1 items-center justify-center border border-[#E2E2E7] px-2 py-1 rounded-2xl shadow-md"
+        onClick={()=>filterCardDataRatingAndAll('deliveryTime')}
       >
         <span>Fast Delivery</span>
         <AiOutlineClose className="font-bold mt-[1px]" />
       </button>
-      <div className="absolute left-16 z-10 flex flex-col space-y-4 w-[175px] bg-white p-4 rounded-lg border font-medium text-black/60 shadow-lg">
-        <div className="flex flex-row-reverse flex-wrap justify-between">
+      {/* <div className="absolute left-16 z-10 flex flex-col space-y-4 w-[175px] bg-white p-4 rounded-lg border font-medium text-black/60 shadow-lg">
+        <div className="flex flex-row-reverse justify-between">
           <input
             type="radio"
             id="relevance"
@@ -112,7 +109,7 @@ export const HomeFilter = ({ FilterData }) => {
           />
           <label htmlFor="highToLow">Cost: High to Low</label>
         </div>
-      </div>
+      </div> */}
 
       {isModalOpen && (
         <div
@@ -171,7 +168,9 @@ export const HomeFilter = ({ FilterData }) => {
                   <div className="p-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full overflow-auto">
                     {<p className="uppercase">{filterData.subLabel}</p>}
                       {filterData?.facetInfo?.length>0 && filterData?.facetInfo?.map((facetInfoItem,index)=>(
-                         <HomeFilterSelection key={facetInfoItem?.id+index} facetInfoItem={facetInfoItem} filterData={filterData} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+                         <HomeFilterSelection key={facetInfoItem?.id+index} facetInfoItem={facetInfoItem} filterData={filterData} selectedItems={selectedItems} setSelectedItems={setSelectedItems}
+                         index={index}
+                         />
                       ))}
                   </div>
                 </div>

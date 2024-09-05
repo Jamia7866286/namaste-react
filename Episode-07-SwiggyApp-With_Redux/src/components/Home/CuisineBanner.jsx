@@ -72,8 +72,8 @@ const CuisineBanner = (props) => {
                 {...settings}
                 // ref={(slider) => (sliderRef.current = slider)}
             >
-                {info?.map((mindCardItem) => ( 
-                    <div className="">
+                {info?.map((mindCardItem, index) => ( 
+                    <div className="" key={index}>
                         <TopicalBannerImage imgStyle={{ width: '80%' }} mindCardItem={mindCardItem} />
                     </div>
                 ))} 

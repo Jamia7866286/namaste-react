@@ -118,7 +118,7 @@ const HeaderComponent = () => {
                 </ul>
             </div>
             {onlineStatus ? (
-                <div className="absolute w-full text-xs text-center animate-moveTopToDown">
+                <div className="absolute w-full text-xs text-center animate-moveTopToDown z-[49]">
                     <div className="bg-green-500 py-1">
                         Connection established, please try refreshing the
                         page now.
