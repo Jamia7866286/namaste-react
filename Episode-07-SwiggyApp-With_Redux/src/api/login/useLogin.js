@@ -1,4 +1,4 @@
-import { login } from '../../redux/slices/auth/authSlice';
+import { loginSuccess } from '../../redux/slices/auth/authSlice';
 import { BASE_URL } from '../../utils/constants';
 
 export const useLogin = async (values, setApiError, dispatch) => {
@@ -13,7 +13,8 @@ export const useLogin = async (values, setApiError, dispatch) => {
         });
         const result = await res.json();
         if (result.status >= 200 && result.status <= 202) {
-            dispatch(login({isAuthenticated:true}))
+            console.log('result in',result)
+            dispatch(loginSuccess({isAuthenticated:true}))
             localStorage.setItem('authToken', result?.token)
         }
         else {

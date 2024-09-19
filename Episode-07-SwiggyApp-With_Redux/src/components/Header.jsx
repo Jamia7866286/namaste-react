@@ -6,19 +6,20 @@ import { Link, useNavigate } from "react-router-dom";
 // import LoginPage from '../pages/Login/index';
 import LOGO from "../assests/images/logo-no-background.png";
 import useOnlineStatus from "../utils/custom_hooks/useOnlineStatus/useOnlineStatus";
-import { login } from "../redux/slices/auth/authSlice";
+import { logout } from "../redux/slices/auth/authSlice";
 import { useEffect } from "react";
 import { isLogIn } from "../utils/commonFunctions";
 
 const HeaderComponent = () => {
     const onlineStatus = useOnlineStatus();
     const authData = useSelector((store) => store.auth);
+    const cartItemsStore = useSelector((store) => store.cart.item);
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const Logout = ()=>{
         localStorage.setItem('authToken', '')
-        dispatch(login({isAuthenticated:false}))
+        dispatch(logout({isAuthenticated:false}))
         navigate('/login')
     }
 
@@ -107,31 +108,32 @@ const HeaderComponent = () => {
                                 Cart
                             </span>
                         </Link>
-
                         <div
                             data-testid="cartQuantity"
                             className="absolute font-bold text-xs text-red-600 -top-[10px] left-4"
                         >
-                            2{" "}
+                            {cartItemsStore.length}{" "}
                         </div>
                     </li>
                 </ul>
             </div>
-            {onlineStatus ? (
-                <div className="absolute w-full text-xs text-center animate-moveTopToDown z-[49]">
-                    <div className="bg-green-500 py-1">
-                        Connection established, please try refreshing the
-                        page now.
+
+            {onlineStatus !== null && (onlineStatus ? (
+                    <div className="absolute w-full text-xs text-center animate-moveTopToDown z-[49]">
+                        <div className="bg-green-500 py-1">
+                            Connection established, please try refreshing the
+                            page now.
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div className="absolute w-full text-xs text-center animate-moveTopToDown">
-                    <div className=" bg-red-500 py-1 ">
-                        Connection error! Please check your connection and
-                        try again.
+                ) : (
+                    <div className="absolute w-full text-xs text-center animate-moveTopToDown">
+                        <div className=" bg-red-500 py-1 ">
+                            Connection error! Please check your connection and
+                            try again.
+                        </div>
                     </div>
-                </div>
-            )}
+                ))
+            }
         </div>
     );
 };
