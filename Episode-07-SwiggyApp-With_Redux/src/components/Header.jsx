@@ -3,7 +3,6 @@ import { FiHelpCircle } from "react-icons/fi";
 import { LuSearch } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import LoginPage from '../pages/Login/index';
 import LOGO from "../assests/images/logo-no-background.png";
 import useOnlineStatus from "../utils/custom_hooks/useOnlineStatus/useOnlineStatus";
 import { logout } from "../redux/slices/auth/authSlice";

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { json, useNavigate } from "react-router-dom";
-import { login } from "../../redux/slices/auth/authSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../common/Error/Error";
 import * as yup from 'yup'
 import { useFormik } from "formik";
 import { useLogin } from "../../api/login/useLogin";
-import { isLogIn } from "../../utils/commonFunctions";
 
 let userInfoSchema = yup.object({
     email: yup.string().required("Please fill this field!").email(),
@@ -30,8 +28,6 @@ const LoginComponent = () => {
         onSubmit: async (values) => {
             useLogin(values, setApiError, dispatch)
             navigate('/')
-            // localStorage.setItem('userEmail', result?.email)
-            // localStorage.setItem('userPassword', result?.password)
         },
     })
 
