@@ -51,7 +51,7 @@ export const RESTAURANT_TYPE_KEY =
   "type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
 
 
-  export const MENU_ITEM = 'https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.560323&lng=77.279235&restaurantId='
+  export const MENU_ITEM = 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D29.94780%26lng%3D78.16280%26restaurantId%3D'
 
 
 
@@ -60,8 +60,9 @@ export const RESTAURANT_TYPE_KEY =
   export const CLOUDINARY_URL = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/';
 
 
-  // export const RESTAURANT_API_old = 'https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.979568962372062&lng=77.50290893018244&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&__fetch_req__=true'
 
-export const RESTAURANT_API = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.560323&lng=77.279235&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+// export const RESTAURANT_API = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.560323&lng=77.279235&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+export const RESTAURANT_API = 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.560323%26lng%3D77.279235%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING'
+
 
 export const BASE_URL = 'http://localhost:3000'

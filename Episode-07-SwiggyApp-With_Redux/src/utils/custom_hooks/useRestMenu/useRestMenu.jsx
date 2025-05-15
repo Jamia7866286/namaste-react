@@ -8,9 +8,11 @@ import { MENU_ITEM } from '../../constants';
     useEffect(() => {
         const RestaurantCardDetailsFetch = async () => {
           try {
+            // let res = await fetch(`${MENU_ITEM}${resId}`);
             let res = await fetch(`${MENU_ITEM}${resId}`);
+            
             let result = await res.json();
-            setRestMenu(result?.data);
+            setRestMenu(result?.data?.cards);
           } catch (error) {
             console.log(error);
           }

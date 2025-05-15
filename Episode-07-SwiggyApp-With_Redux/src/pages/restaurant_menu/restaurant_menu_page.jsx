@@ -10,10 +10,12 @@ const RestaurantMenuPage = () => {
   const [openAccordionIndex, setOpenAccordionIndex] = useState(null);
 
   const { name, costForTwoMessage } =
-    restMenu?.cards[2]?.card?.card?.info || {};
+    restMenu?.data?.cards[2]?.card?.card?.info || {};
+
+    console.log('restMenu',restMenu)
 
   const filterCatagory =
-    restMenu?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards.filter(
+    restMenu?.data?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards.filter(
       (catagoryItem) =>
         catagoryItem?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"

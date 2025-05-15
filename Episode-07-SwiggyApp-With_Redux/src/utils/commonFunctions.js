@@ -8,7 +8,7 @@ export const isLogIn = (dispatch, navigate)=>{
         }
         else{
             dispatch(loginFailure({ isAuthenticated: false }));
-            navigate("/login");
+            // navigate("/login");
         }
 }
 //   const token = sessionStorage.getItem("authToken"); // Use sessionStorage instead of localStorage
